@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+  <h1>Administração</h1>
+
+    <table border="1">
+    <tr>
+      <th>Nome</th>
+      <th>Cadastrado em</th>
+      <th>Papel e status</th>
+    </tr>
+    {% for p in perfis %}
+      <tr>
+        <td>{{ p.nome }}</td>
+        <td>{{ p.criado_em[:10] }}</td>
+        <td>
+          <form method="post" action="/admin/atualizar">
+            <input type="hidden" name="alvo" value="{{ p.id }}">
+
+            <select name="papel">
+              {% for opcao in ["associado", "admin"] %}
+                <option value="{{ opcao }}" {% if p.papel == opcao %}selected{% endif %}>{{ opcao }}</option>
+              {% endfor %}
+            </select>
+
+            <select name="status">
+              {% for opcao in ["pendente", "aprovado", "recusado"] %}
+                <option value="{{ opcao }}" {% if p.status == opcao %}selected{% endif %}>{{ opcao }}</option>
+              {% endfor %}
+            </select>
+
+            <button type="submit">Salvar</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

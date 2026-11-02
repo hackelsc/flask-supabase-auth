@@ -1,0 +1,224 @@
+/* =============================================================
+   estilo.css
+   Aparência do site inteiro. O base.html carrega este arquivo,
+   então todas as páginas usam os mesmos estilos.
+   ============================================================= */
+
+/* --- Cores e medidas (variáveis) --------------------------------
+   :root guarda valores com nome. Para mudar a cor do site inteiro,
+   basta trocar aqui. */
+:root {
+  --verde: #15803d;          /* cor de destaque: botões e links */
+  --verde-escuro: #166534;   /* botão com o mouse em cima */
+  --verde-claro: #dcfce7;    /* fundo dos avisos */
+  --texto: #1f2937;          /* texto principal */
+  --texto-suave: #6b7280;    /* textos secundários */
+  --fundo: #f6f7f9;          /* fundo da página */
+  --cartao: #ffffff;         /* fundo das caixas */
+  --borda: #e5e7eb;          /* linhas e contornos */
+  --raio: 10px;              /* arredondamento dos cantos */
+}
+
+/* --- Base -------------------------------------------------------- */
+* {
+  box-sizing: border-box;    /* a largura inclui borda e espaçamento */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fundo);
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.5rem;
+}
+
+a {
+  color: var(--verde);
+}
+
+/* --- Topo: nome do site e menu ----------------------------------- */
+.topo {
+  background: var(--cartao);
+  border-bottom: 1px solid var(--borda);
+}
+
+.topo-interno {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.9rem 1rem;
+  display: flex;             /* coloca o nome e o menu lado a lado */
+  flex-wrap: wrap;           /* em tela pequena, quebra a linha */
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.marca {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.marca span {
+  color: var(--verde);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+nav a {
+  color: var(--texto-suave);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;      /* formato de pílula */
+}
+
+nav a:hover {
+  color: var(--verde);
+  background: var(--verde-claro);
+}
+
+/* --- Área central ------------------------------------------------ */
+.conteudo {
+  max-width: 960px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+/* --- Avisos (mensagens flash) ------------------------------------ */
+.aviso {
+  background: var(--verde-claro);
+  border-left: 4px solid var(--verde);
+  padding: 0.75rem 1rem;
+  border-radius: var(--raio);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Formulários (cadastro e login) ------------------------------ */
+.conteudo > form {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  max-width: 420px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--verde);
+  outline-offset: 1px;
+  border-color: var(--verde);
+}
+
+button {
+  background: var(--verde);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;           /* mãozinha ao passar o mouse */
+}
+
+button:hover {
+  background: var(--verde-escuro);
+}
+
+/* --- Tabela do admin --------------------------------------------- */
+.tabela-rolagem {
+  overflow-x: auto;          /* em tela pequena, a tabela rola de lado */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--borda);
+}
+
+th {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--fundo);
+}
+
+/* Formulário dentro de cada linha: listas e botão lado a lado. */
+form.linha {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+form.linha select {
+  width: auto;
+  margin-top: 0;
+}
+
+form.linha button {
+  padding: 0.45rem 0.9rem;
+}
+
+/* --- Caixas de conteúdo (perfil, área restrita, painéis) --------- */
+.caixa {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+}
+
+.caixa h1,
+.caixa h2 {
+  margin-top: 0;
+}
+
+.caixa p {
+  margin: 0.4rem 0;
+}
+
+.suave {
+  color: var(--texto-suave);
+}

@@ -3,7 +3,8 @@
 {% block conteudo %}
   <h1>Administração</h1>
 
-    <table border="1">
+  <div class="tabela-rolagem">
+  <table>
     <tr>
       <th>Nome</th>
       <th>Cadastrado em</th>
@@ -14,7 +15,7 @@
         <td>{{ p.nome }}</td>
         <td>{{ p.criado_em[:10] }}</td>
         <td>
-          <form method="post" action="/admin/atualizar">
+          <form class="linha" method="post" action="/admin/atualizar">
             <input type="hidden" name="alvo" value="{{ p.id }}">
 
             <select name="papel">
@@ -35,4 +36,5 @@
       </tr>
     {% endfor %}
   </table>
+  </div>
 {% endblock %}

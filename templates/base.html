@@ -2,29 +2,38 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Flask Supabase Auth</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-  <nav>
-  <a href="/">Início</a>
-  <a href="/paineis">Painéis</a>
-  {% if session.access_token %}
-    <a href="/perfil">Meu perfil</a>
-    <a href="/area-restrita">Área restrita</a>
-    {% if session.papel == "admin" %}
-      <a href="/admin">Admin</a>
-    {% endif %}
-    <a href="/logout">Sair</a>
-  {% else %}
-    <a href="/cadastro">Cadastro</a>
-    <a href="/login">Login</a>
-  {% endif %}
-</nav>
-  <hr>
-    {% for mensagem in get_flashed_messages() %}
-    <p><strong>{{ mensagem }}</strong></p>
-  {% endfor %}
+  <header class="topo">
+    <div class="topo-interno">
+      <a class="marca" href="/">Flask <span>Supabase</span> Auth</a>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/paineis">Painéis</a>
+        {% if session.access_token %}
+          <a href="/perfil">Meu perfil</a>
+          <a href="/area-restrita">Área restrita</a>
+          {% if session.papel == "admin" %}
+            <a href="/admin">Admin</a>
+          {% endif %}
+          <a href="/logout">Sair</a>
+        {% else %}
+          <a href="/cadastro">Cadastro</a>
+          <a href="/login">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
 
-  {% block conteudo %}{% endblock %}
+  <main class="conteudo">
+    {% for mensagem in get_flashed_messages() %}
+      <div class="aviso">{{ mensagem }}</div>
+    {% endfor %}
+
+    {% block conteudo %}{% endblock %}
+  </main>
 </body>
 </html>
